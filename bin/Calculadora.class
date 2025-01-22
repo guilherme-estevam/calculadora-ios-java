@@ -1,1 +1,52 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
+public class Calculadora {
+   private JFrame frame = new JFrame();
+   private JTextField textField;
+   private StringBuilder currentInput = new StringBuilder();
+   private String operator = "";
+   private double result = 0.0;
+   private boolean isOperatorClicked = false;
+
+   public static void main(String[] var0) {
+      EventQueue.invokeLater(() -> {
+         try {
+            Calculadora var0 = new Calculadora();
+            var0.frame.setVisible(true);
+         } catch (Exception var1) {
+            var1.printStackTrace();
+         }
+
+      });
+   }
+
+   public Calculadora() {
+      this.frame.setBounds(100, 100, 300, 400);
+      this.frame.setDefaultCloseOperation(3);
+      this.frame.getContentPane().setLayout(new BorderLayout());
+      this.textField = new JTextField();
+      this.textField.setHorizontalAlignment(4);
+      this.frame.getContentPane().add(this.textField, "North");
+      this.textField.setColumns(10);
+      JPanel var1 = new JPanel();
+      this.frame.getContentPane().add(var1, "Center");
+      var1.setLayout(new GridLayout(4, 4, 5, 5));
+      String[] var2 = new String[]{"7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "C", "0", "=", "+"};
+      String[] var3 = var2;
+      int var4 = var2.length;
+
+      for(int var5 = 0; var5 < var4; ++var5) {
+         String var6 = var3[var5];
+         JButton var7 = new JButton(var6);
+         var7.addActionListener(new Calculadora$ButtonClickListener(this));
+         var1.add(var7);
+      }
+
+   }
+}
